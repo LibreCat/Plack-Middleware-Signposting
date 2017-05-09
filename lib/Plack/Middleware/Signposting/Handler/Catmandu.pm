@@ -10,11 +10,23 @@ our $VERSION = '0.01';
 with 'Plack::Middleware::Signposting::Handler';
 
 has store => (is => 'ro', required => 1);
-has bag => (is => 'ro', required => 1);
-has fixes => (is => 'lazy');
+has bag => (is => 'lazy');
+has fix => (is => 'lazy');
+
+sub _build_bag {
+    my $self = shift;
+    state $bag = $self->bag // 'default';
+}
+
+sub _build_fix {
+    my $self = shift;
+    state $fixer = Catmandu::Fix->new(fixes => $self->fix);
+}
 
 sub get_signs {
     my ($self, $id) = @_;
+
+    my $fixer = $self->fix;
 
     my $store = $self->store;
     unless (is_instance($store)) {
@@ -23,17 +35,10 @@ sub get_signs {
 
     my $bag = $store->bag($self->bag);
     my $rec = $bag->get($id);
-    $self->fixes->fix($rec);
 
-    return $rec;
+    $fixer->fix($rec);
 
-    # return [
-    #     ["http://orcid.org/0000-0000-0001-0221", "author"],
-    #     ["http://orcid.org/0000-0000-0001-0001", "author"],
-    #     ["ISI:000001213131", "identifier"],
-    #     ["10.1233/3247239487239", "describes"],
-    # ];
-
+    return $rec->{signs};
 }
 
 1;

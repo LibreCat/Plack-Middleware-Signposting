@@ -13,9 +13,9 @@ sub call {
     my ($self, $env) = @_;
     my $res  = $self->app->($env);
 
-    my $path_match = $self->path or return;
-    my $uri = $env->{PATH_INFO};
-    $uri =~ s/$path_match// or return;
+    # my $path_match = $self->path or return;
+    # my $uri = $env->{PATH_INFO};
+    # $uri =~ s/$path_match// or return;
 
     $self->response_cb(
         $res,
@@ -24,7 +24,7 @@ sub call {
 
             my $headers = $res->[1];
 
-            my $signs = $self->_handler->get_signs($uri);
+            my $signs = $self->_handler->get_signs('1');
             push @$headers, ('Link' => $self->_to_link_format(@$signs));
         }
     );
@@ -43,9 +43,10 @@ sub _to_link_format {
     my ($self, @signs) = @_;
 
     my $body = join(",\n", map {
-        my ($uri, $relation) = @$_;
-        qq|<$uri>; rel="$relation"|;
-    } @signs);
+        my ($uri, $relation, $type) = @$_;
+        my $link_text = qq|<$uri>; rel="$relation"|;
+        $link_text .= qq|; type="$type"| if $type;
+        $link_text;    } @signs);
 
     "$body\n";
 }
