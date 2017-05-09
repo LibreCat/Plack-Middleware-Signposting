@@ -1,14 +1,33 @@
 # NAME
 
-Plack::Middleware::Signposting - Blah blah blah
+Plack::Middleware::Signposting - A base class for Signposting implementations
 
 # SYNOPSIS
 
-    use Plack::Middleware::Signposting;
+    package Plack::Middleware::Signposting::Handler::MyStore;
+
+    use Moo;
+
+    with 'Plack::Middleware::Signposting::Handler';
+
+    sub get_signs {
+        my ($self, $id) = @_;
+
+        # your code goes here
+
+
+        return [
+          [''],
+          [..],
+          [xxx],
+          #...
+        ]
+    }
 
 # DESCRIPTION
 
-Plack::Middleware::Signposting is
+Plack::Middleware::Signposting is a base class for Signposting(https://signposting.org) protocol.
+You only need to implement a \*get\_sings()\* method.
 
 # AUTHOR
 

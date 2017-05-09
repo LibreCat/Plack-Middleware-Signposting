@@ -1,10 +1,10 @@
 {
-   "abstract" : "Blah blah blah",
+   "abstract" : "A base class for Signposting implementations",
    "author" : [
       "Vitali Peil <vitali.peil@uni-bielefeld.de>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Milla version v1.0.16, Dist::Zilla version 6.008, CPAN::Meta::Converter version 2.150001",
+   "generated_by" : "Dist::Milla version v1.0.17, Dist::Zilla version 6.008, CPAN::Meta::Converter version 2.150005",
    "license" : [
       "perl_5"
    ],
@@ -31,13 +31,16 @@
       },
       "develop" : {
          "requires" : {
-            "Dist::Milla" : "v1.0.16",
+            "Dist::Milla" : "v1.0.17",
             "Test::Pod" : "1.41"
          }
       },
       "runtime" : {
          "requires" : {
-            "perl" : "5.008005"
+            "Catmandu" : "1.0504",
+            "Moo" : "2.002005",
+            "Plack" : "1.0042",
+            "perl" : "v5.10.1"
          }
       },
       "test" : {
@@ -47,7 +50,18 @@
       }
    },
    "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/LibreCat/Plack-Middleware-Signposting/issues"
+      },
+      "homepage" : "https://github.com/LibreCat/Plack-Middleware-Signposting",
+      "repository" : {
+         "type" : "git",
+         "url" : "https://github.com/LibreCat/Plack-Middleware-Signposting.git",
+         "web" : "https://github.com/LibreCat/Plack-Middleware-Signposting"
+      }
+   },
    "version" : "0.01",
-   "x_serialization_backend" : "Cpanel::JSON::XS version 3.0217"
+   "x_serialization_backend" : "Cpanel::JSON::XS version 3.0231"
 }
 
