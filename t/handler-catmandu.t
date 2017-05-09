@@ -5,6 +5,7 @@ use HTTP::Request::Common;
 use Plack::Builder;
 use Plack::Test;
 use Catmandu;
+use Data::Dumper;
 
 my $store = Catmandu->store;
 
@@ -13,9 +14,7 @@ subtest 'simple handler' => sub {
         _id => 1,
         signs => [
             ["http://orcid.org/0000-0000-0001-0221", "author"],
-            ["http://orcid.org/0000-0000-0001-0001", "author"],
-            ["ISI:000001213131", "identifier"],
-            ["10.1233/3247239487239", "describes"],
+            ["https://doi.org/10.17026/dans-xev-46h7", "describedby", "application/vnd.citationstyles.csl+json"]
         ],
     });
 
@@ -36,14 +35,16 @@ subtest 'simple handler' => sub {
         {
             my $req = GET "http://localhost/record/1";
             my $res = $cb->($req);
-            # like qr/\<http:\/\/orcid.org\/0000-0000-0001-0001\>; rel="auhtor"/, $res->header('Link');
+
+            like $res->header('Link'), qr/\<http:\/\/orcid.org\/0000-0000-0001-0221\>; rel="author"/, 'match ORCID';
+            like $res->header('Link'), qr/type="application\/vnd.citationstyles\.csl\+json"/, "match rel and type";
         }
     };
 };
 
 subtest 'advanced handler with fix' => sub {
     $store->bag('default')->add({
-        _id => 1,
+        _id => 2,
         author => {
             full_name => 'Einstein, Albert',
             orcid => 'http://orcid.org/0000-0000-0001-0221',
@@ -67,9 +68,10 @@ subtest 'advanced handler with fix' => sub {
         my $cb = shift;
 
         {
-            my $req = GET "http://localhost/record/1";
+            my $req = GET "http://localhost/record/2";
             my $res = $cb->($req);
-            is_deeply [$res->header('Link')], ['<http://orcid.org/0000-0000-0001-0221>; rel="author"'];
+            note Dumper $res;
+            like $res->header('Link'), qr/0000-0000-0001-0221\>; rel="author"/;
         }
     };
 };

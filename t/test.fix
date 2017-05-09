@@ -1,8 +1,7 @@
 if exists(author.orcid)
   add_field(au.$append,author)
-  add_field(au.$append,'http://orcid.org/34239084309843209')
+  move_field(author.orcid, au.$append)
   move_field(au, r.$append)
 end
 
-retain(r)
-move_field(r, .)
+move_field(r, signs)

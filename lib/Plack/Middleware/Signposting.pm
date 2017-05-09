@@ -11,21 +11,25 @@ our $VERSION = '0.01';
 
 sub call {
     my ($self, $env) = @_;
-    my $res  = $self->app->($env);
 
-    # my $path_match = $self->path or return;
-    # my $uri = $env->{PATH_INFO};
-    # $uri =~ s/$path_match// or return;
+    my $res = $self->app->($env);
+
+    #my $path_match = $self->path or return;
+    my $uri = $env->{PATH_INFO};
+    $uri =~ s/.*record\/(\d+)/$1/ or return;
 
     $self->response_cb(
         $res,
         sub {
             my $res = shift;
 
+            # my $uri = $env->{PATH_INFO};
+            # $uri =~ s/.*record\/(\d+)/$1/ or return;
+
             my $headers = $res->[1];
 
-            my $signs = $self->_handler->get_signs('1');
-            push @$headers, ('Link' => $self->_to_link_format(@$signs));
+            my $signs = $self->_handler->get_signs($uri);
+            push @$headers, ('Link' => $self->_to_link_format(@$signs)) if $signs;
         }
     );
 }
@@ -46,7 +50,8 @@ sub _to_link_format {
         my ($uri, $relation, $type) = @$_;
         my $link_text = qq|<$uri>; rel="$relation"|;
         $link_text .= qq|; type="$type"| if $type;
-        $link_text;    } @signs);
+        $link_text;
+    } @signs);
 
     "$body\n";
 }
