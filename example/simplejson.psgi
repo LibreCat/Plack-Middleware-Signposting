@@ -13,4 +13,3 @@ builder {
    enable "Plack::Middleware::Signposting::JSON";
    $app;
 };
-

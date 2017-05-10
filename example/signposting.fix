@@ -1,0 +1,12 @@
+do list(path: author, var: loop)
+  if exists(loop.orcid)
+    prepend(loop.orcid, 'https://orcid.org/')
+    move_field(loop.orcid, tmp.$append)
+
+    add_field(tmp.$append,author)
+    move_field(tmp, r.$append)
+  end
+end
+
+move_field(r, signs)
+retain(signs)
