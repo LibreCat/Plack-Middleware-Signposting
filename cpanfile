@@ -2,6 +2,7 @@ requires 'perl', '5.10.1';
 
 on test => sub {
     requires 'Test::More', '0.96';
+    requires 'File::Slurp';
 };
 
 requires 'Catmandu', '1.0504';
