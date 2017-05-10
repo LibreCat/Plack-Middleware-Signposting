@@ -1,6 +1,0 @@
-# catmandu.yml for tests
-store:
-  default:
-    package: DBI
-    options:
-      data_source: "dbi:SQLite:dbname=t/test.sqlite3"

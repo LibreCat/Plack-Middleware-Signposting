@@ -32,6 +32,10 @@ sub call {
         my $body = join('', @{$res->[2]});
         my $data = decode_json($body);
 
+        if (ref $data && ref $data eq 'ARRAY') {
+            $data = $data->[0];
+        }
+
         # harcoded fix file
         my $fixer = Catmandu::Fix->new(fixes => ['example/signposting.fix']);
         $fixer->fix($data);

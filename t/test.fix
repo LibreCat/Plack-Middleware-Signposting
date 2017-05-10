@@ -1,7 +1,0 @@
-if exists(author.orcid)
-  add_field(au.$append,author)
-  move_field(author.orcid, au.$append)
-  move_field(au, r.$append)
-end
-
-move_field(r, signs)
