@@ -1,41 +1,31 @@
 # NAME
 
-Plack::Middleware::Signposting - A base class for Signposting implementations
+Plack::Middleware::SignpostingJSON - A Signposting implementation from JSON content
+
+[![Build Status](https://travis-ci.org/LibreCat/Plack-Middleware-Signposting.svg?branch=master)](https://travis-ci.org/LibreCat/Plack-Middleware-Signposting)
+[![Coverage Status](https://coveralls.io/repos/github/LibreCat/Plack-Middleware-Signposting/badge.svg?branch=master)](https://coveralls.io/github/LibreCat/Plack-Middleware-Signposting?branch=master)
 
 # SYNOPSIS
 
-    package Plack::Middleware::Signposting::Handler::MyStore;
+    builder {
+       enable "Plack::Middleware::Signposting::JSON";
 
-    use Moo;
-
-    with 'Plack::Middleware::Signposting::Handler';
-
-    sub get_signs {
-        my ($self, $id) = @_;
-
-        # your code goes here
-
-
-        return [
-          [''],
-          [..],
-          [xxx],
-          #...
-        ]
-    }
+       sub {200, ['Content-Type' => 'text/plain'], ['hello world']};
+    };
 
 # DESCRIPTION
 
-Plack::Middleware::Signposting is a base class for Signposting(https://signposting.org) protocol.
-You only need to implement a \*get\_sings()\* method.
+Plack::Middleware::Signposting::JSON is a base class for Signposting(https://signposting.org) protocol.
 
 # AUTHOR
 
-Vitali Peil <vitali.peil@uni-bielefeld.de>
+Nicolas Steenlant, `<nicolas.steenlant at ugent.be>`
+
+Vitali Peil, `<vitali.peil at uni-bielefeld.de>`
 
 # COPYRIGHT
 
-Copyright 2016- Vitali Peil
+Copyright 2017 - Vitali Peil
 
 # LICENSE
 

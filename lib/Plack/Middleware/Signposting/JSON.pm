@@ -10,6 +10,8 @@ use Plack::Util;
 use Catmandu;
 use Catmandu::Fix;
 
+our $VERSION = '0.01';
+
 sub call {
     my ($self, $env) = @_;
 
@@ -64,5 +66,51 @@ sub _to_link_format {
     $body;
 }
 
-
 1;
+
+__END__
+
+=encoding utf-8
+
+=head1 NAME
+
+Plack::Middleware::SignpostingJSON - A Signposting implementation from JSON content
+
+=begin markdown
+
+[![Build Status](https://travis-ci.org/LibreCat/Plack-Middleware-Signposting.svg?branch=master)](https://travis-ci.org/LibreCat/Plack-Middleware-Signposting)
+[![Coverage Status](https://coveralls.io/repos/github/LibreCat/Plack-Middleware-Signposting/badge.svg?branch=master)](https://coveralls.io/github/LibreCat/Plack-Middleware-Signposting?branch=master)
+
+=end markdown
+
+
+=head1 SYNOPSIS
+
+    builder {
+       enable "Plack::Middleware::Signposting::JSON";
+
+       sub {200, ['Content-Type' => 'text/plain'], ['hello world']};
+    };
+
+=head1 DESCRIPTION
+
+Plack::Middleware::Signposting::JSON is a base class for Signposting(https://signposting.org) protocol.
+
+=head1 AUTHOR
+
+Nicolas Steenlant, C<< <nicolas.steenlant at ugent.be> >>
+
+Vitali Peil, C<< <vitali.peil at uni-bielefeld.de> >>
+
+=head1 COPYRIGHT
+
+Copyright 2017 - Vitali Peil
+
+=head1 LICENSE
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=head1 SEE ALSO
+
+=cut

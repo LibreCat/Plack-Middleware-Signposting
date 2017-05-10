@@ -1,7 +1,7 @@
 {
-   "abstract" : "A base class for Signposting implementations",
+   "abstract" : "A Signposting implementation from JSON content",
    "author" : [
-      "Vitali Peil <vitali.peil@uni-bielefeld.de>"
+      "Nicolas Steenlant, C<< <nicolas.steenlant at ugent.be> >>"
    ],
    "dynamic_config" : 0,
    "generated_by" : "Dist::Milla version v1.0.16, Dist::Zilla version 6.008, CPAN::Meta::Converter version 2.150001",
@@ -38,6 +38,7 @@
       "runtime" : {
          "requires" : {
             "Catmandu" : "1.0504",
+            "JSON" : "2.90",
             "Moo" : "2.002005",
             "Plack" : "1.0042",
             "perl" : "v5.10.1"
@@ -45,6 +46,7 @@
       },
       "test" : {
          "requires" : {
+            "File::Slurp" : "0",
             "Test::More" : "0.96"
          }
       }
@@ -63,8 +65,9 @@
    },
    "version" : "0.01",
    "x_contributors" : [
-      "Nicolas Steenlant <nicolas.steenlant@ugent.be>"
+      "Nicolas Steenlant <nicolas.steenlant@ugent.be>",
+      "Vitali Peil <vitali.peil@uni-bielefeld.de>"
    ],
-   "x_serialization_backend" : "Cpanel::JSON::XS version 3.0217"
+   "x_serialization_backend" : "Cpanel::JSON::XS version 3.0227"
 }
 
