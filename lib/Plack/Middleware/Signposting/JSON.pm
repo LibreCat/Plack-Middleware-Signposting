@@ -10,7 +10,7 @@ use Plack::Util::Accessor qw(fix);
 use Catmandu;
 use Catmandu::Fix;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 sub call {
     my ($self, $env) = @_;
