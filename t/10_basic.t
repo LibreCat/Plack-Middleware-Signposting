@@ -11,7 +11,7 @@ use Test::More;
 my $json = read_file("$Bin/../example/publication.json");;
 
 my $app = builder {
-    enable "Plack::Middleware::Signposting::JSON";
+    enable "Plack::Middleware::Signposting::JSON", fix => "$Bin/../example/signposting.fix";
 
     sub { [ '200', ['Content-Type' => 'application/json'], [$json] ] };
 };
