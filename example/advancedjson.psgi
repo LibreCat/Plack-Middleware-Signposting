@@ -13,6 +13,6 @@ my $app = sub {
 };
 
 builder {
-   enable "Plack::Middleware::Signposting::JSON";
+   enable "Plack::Middleware::Signposting::JSON", fix => 'example/signposting.fix';
    $app;
 };

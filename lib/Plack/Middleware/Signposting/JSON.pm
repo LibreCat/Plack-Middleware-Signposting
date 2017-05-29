@@ -6,7 +6,7 @@ use warnings;
 use parent 'Plack::Middleware';
 use JSON qw(decode_json);
 use Plack::Request;
-use Plack::Util;
+use Plack::Util::Accessor qw(fix);
 use Catmandu;
 use Catmandu::Fix;
 
@@ -39,7 +39,8 @@ sub call {
         }
 
         # harcoded fix file
-        my $fixer = Catmandu::Fix->new(fixes => ['example/signposting.fix']);
+        my $fix = $self->fix ? $self->fix : 'nothing()';
+        my $fixer = Catmandu::Fix->new(fixes => [$fix]);
         $fixer->fix($data);
 
         # add information to the 'Link' header
