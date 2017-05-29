@@ -1,4 +1,6 @@
 Revision history for Plack-Middleware-Signposting
 
 {{$NEXT}}
+
+0.01  2017-05-29 20:43:01 CEST
         - Initial release
