@@ -75,7 +75,7 @@ __END__
 
 =head1 NAME
 
-Plack::Middleware::SignpostingJSON - A Signposting implementation from JSON content
+Plack::Middleware::Signposting::JSON - A Signposting implementation from JSON content
 
 =begin markdown
 
