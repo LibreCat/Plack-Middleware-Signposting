@@ -6,7 +6,7 @@ use warnings;
 use Plack::Builder;
 
 my $app = sub {
-    [200, ['Content-Type' => 'application/json'], ['{"name":"Fu Manchu", "orcid":"12345-im-an-orcid"}']];
+    [200, ['Content-Type' => 'application/json'], ['{"data": {"signs": [{"name":"Fu Manchu"}, {"orcid":"12345-im-an-orcid"}]}}']];
 };
 
 builder {

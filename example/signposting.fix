@@ -1,4 +1,4 @@
-do list(path: author, var: loop)
+do list(path: data.author, var: loop)
   if exists(loop.orcid)
     prepend(loop.orcid, 'https://orcid.org/')
     move_field(loop.orcid, tmp.$append)
@@ -8,7 +8,7 @@ do list(path: author, var: loop)
   end
 end
 
-if exists(doi)
+if exists(data.doi)
   prepend(doi, 'https://doi.org/')
   copy_field(doi,tmp.$append)
   add_field(tmp.$append, describedby)
