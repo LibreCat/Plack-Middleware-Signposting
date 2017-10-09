@@ -9,13 +9,13 @@ do list(path: data.author, var: loop)
 end
 
 if exists(data.doi)
-  prepend(doi, 'https://doi.org/')
-  copy_field(doi,tmp.$append)
+  prepend(data.doi, 'https://doi.org/')
+  copy_field(data.doi,tmp.$append)
   add_field(tmp.$append, describedby)
   add_field(tmp.$append, 'application/vnd.citationstyles.csl+json')
   move_field(tmp, r.$append)
 
-  copy_field(doi,tmp2.$append)
+  copy_field(data.doi,tmp2.$append)
   add_field(tmp2.$append, identifier)
   move_field(tmp2, r.$append)
 end
