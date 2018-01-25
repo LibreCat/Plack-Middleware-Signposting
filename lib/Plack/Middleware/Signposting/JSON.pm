@@ -11,8 +11,6 @@ use parent 'Plack::Middleware';
 
 extends 'Plack::Middleware::Signposting';
 
-our $VERSION = '0.02';
-
 sub call {
     my ($self, $env) = @_;
 
@@ -65,10 +63,11 @@ Plack::Middleware::Signposting::JSON - A Signposting implementation from JSON co
 
 =head1 SYNOPSIS
 
+    my $json_string = '{"hello":"world",....}';
     builder {
        enable "Plack::Middleware::Signposting::JSON";
 
-       sub {200, ['Content-Type' => 'text/plain'], ['hello world']};
+       sub { 200, [ 'Content-Type' => 'text/plain' ], [ $json_string ] };
     };
 
 =cut

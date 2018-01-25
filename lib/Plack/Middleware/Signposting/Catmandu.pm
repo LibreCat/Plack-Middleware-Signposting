@@ -4,13 +4,28 @@ use Catmandu::Sane;
 use Catmandu;
 use Catmandu::Fix;
 use Plack::Request;
-use Plack::Util::Accessor qw(fix);
+use Plack::Util::Accessor;
 use Moo;
 use parent 'Plack::Middleware';
 
 extends 'Plack::Middleware::Signposting';
 
-our $VERSION = '0.02';
+has store => (is => 'ro');
+has bag => (is => 'ro');
+has _bag => (is => 'lazy');
+has fix => (is => 'ro');
+has match_path => (is => 'ro');
+has _fixer => (is => 'lazy');
+
+sub _build__bag {
+    my ($self) = @_;
+    Catmandu->store($self->store)->bag($self->bag);
+}
+
+sub _build__fixer {
+    my ($self) = @_;
+    Catmandu::Fix->new(fixes => [$self->fix]);
+}
 
 sub call {
     my ($self, $env) = @_;
@@ -18,12 +33,16 @@ sub call {
     my $request = Plack::Request->new($env);
     my $res = $self->app->($env);
 
+    my $bag = $self->_bag;
+    my $fixer = $self->_fixer;
+
     # only get/head requests
     return $res unless $request->method =~ m{^get|head$}i;
 
+    my $id;
     # match path
     if ($request->path =~ m{publication/(\w+?)/?}) {
-        my $id = $1;
+        $id = $1;
     } else {
         return $res;
     }
@@ -32,18 +51,12 @@ sub call {
     return $self->response_cb($res, sub {
         my $res = shift;
 
-        my $content_type = Plack::Util::header_get($res->[1], 'Content-Type') || '';
-        # only json responses
-        #return unless $content_type =~ m{^application/json|application\/vnd\.api\+json}i;
         # ignore streaming response for now
         return unless ref $res->[2] eq 'ARRAY';
 
-        state $bag = Catmandu->store(..)->bag(..);
         my $data = $bag->get($id);
         return unless $data->{_id};
 
-        my $fix = $self->fix ? $self->fix : 'nothing()';
-        my $fixer = Catmandu::Fix->new(fixes => [$fix]);
         $fixer->fix($data);
 
         # add information to the 'Link' header
@@ -64,43 +77,14 @@ __END__
 
 =head1 NAME
 
-Plack::Middleware::Signposting::JSON - A Signposting implementation from JSON content
-
-=begin markdown
-
-[![Build Status](https://travis-ci.org/LibreCat/Plack-Middleware-Signposting.svg?branch=master)](https://travis-ci.org/LibreCat/Plack-Middleware-Signposting)
-[![Coverage Status](https://coveralls.io/repos/github/LibreCat/Plack-Middleware-Signposting/badge.svg?branch=master)](https://coveralls.io/github/LibreCat/Plack-Middleware-Signposting?branch=master)
-
-=end markdown
-
+Plack::Middleware::Signposting::Catmandu - A Signposting implementation from a Catmandu store
 
 =head1 SYNOPSIS
 
     builder {
-       enable "Plack::Middleware::Signposting::JSON";
+       enable "Plack::Middleware::Signposting::Catmandu", store => 'my-store', bag => 'my-data', fix => 'custom.fix';
 
        sub {200, ['Content-Type' => 'text/plain'], ['hello world']};
     };
-
-=head1 DESCRIPTION
-
-Plack::Middleware::Signposting::JSON is a base class for Signposting(https://signposting.org) protocol.
-
-=head1 AUTHOR
-
-Nicolas Steenlant, C<< <nicolas.steenlant at ugent.be> >>
-
-Vitali Peil, C<< <vitali.peil at uni-bielefeld.de> >>
-
-=head1 COPYRIGHT
-
-Copyright 2017 - Vitali Peil
-
-=head1 LICENSE
-
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
-
-=head1 SEE ALSO
 
 =cut

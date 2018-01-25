@@ -8,6 +8,13 @@ use Plack::Builder;
 use Plack::Test;
 use Test::More;
 
+my $pkg;
+BEGIN {
+    $pkg = "Plack::Middleware::Signposting::JSON";
+    use_ok $pkg;
+}
+require_ok $pkg;
+
 subtest "basic app without fix file" => sub {
     my $app = builder {
         enable "Plack::Middleware::Signposting::JSON";
