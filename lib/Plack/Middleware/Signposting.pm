@@ -3,7 +3,7 @@ package Plack::Middleware::Signposting;
 use Catmandu::Sane;
 use parent 'Plack::Middleware';
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 sub to_link_format {
     my ($self, @signs) = @_;
