@@ -14,7 +14,7 @@ has store => (is => 'ro');
 has bag => (is => 'ro');
 has _bag => (is => 'lazy');
 has fix => (is => 'ro');
-has match_path => (is => 'ro');
+has match_paths => (is => 'ro');
 has _fixer => (is => 'lazy');
 
 sub _build__bag {
@@ -40,13 +40,12 @@ sub call {
     return $res unless $request->method =~ m{^get|head$}i;
 
     my $id;
-    # match path
-    if ($request->path =~ m{publication/(\w+?)/?}) {
-        $id = $1;
-    } else {
-        return $res;
-    }
-
+    my $match_paths = $self->match_paths;
+    my $pattern = join('|', @$match_paths);
+    $id = $request->path =~ /$pattern/;
+    
+    return $res unless $id;
+    
     # see http://search.cpan.org/~miyagawa/Plack-1.0044/lib/Plack/Middleware.pm#RESPONSE_CALLBACK
     return $self->response_cb($res, sub {
         my $res = shift;
@@ -86,5 +85,17 @@ Plack::Middleware::Signposting::Catmandu - A Signposting implementation from a C
 
        sub {200, ['Content-Type' => 'text/plain'], ['hello world']};
     };
+
+=head1 CONFIGURATION
+
+    store: library
+    bag: books
+    fix: signs.fix
+    math_paths:
+      - "publication/(\w+?)/?"
+      - "record/(\w+?)/?"
+
+
+=head1 OPTIONS
 
 =cut
