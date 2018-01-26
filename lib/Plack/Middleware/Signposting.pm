@@ -57,13 +57,9 @@ This method produces the format for the link header. It expects an arrayref as i
 
 =head1 AUTHOR
 
-Nicolas Steenlant, C<< <nicolas.steenlant at ugent.be> >>
-
 Vitali Peil, C<< <vitali.peil at uni-bielefeld.de> >>
 
-=head1 COPYRIGHT
-
-Copyright 2017 - Vitali Peil
+Nicolas Steenlant, C<< <nicolas.steenlant at ugent.be> >>
 
 =head1 LICENSE
 
