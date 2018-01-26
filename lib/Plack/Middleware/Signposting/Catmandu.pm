@@ -81,21 +81,18 @@ Plack::Middleware::Signposting::Catmandu - A Signposting implementation from a C
 =head1 SYNOPSIS
 
     builder {
-       enable "Plack::Middleware::Signposting::Catmandu", store => 'my-store', bag => 'my-data', fix => 'custom.fix';
+        enable "Plack::Middleware::Signposting::Catmandu",
+            store => 'library',
+            bag => 'books',
+            fix => 'signs.fix', #optional
+            math_paths => ["publication/(\w+?)/?", "record/(\w+?)/?"],
+            ;
 
-       sub {200, ['Content-Type' => 'text/plain'], ['hello world']};
+        # ...
     };
 
-=head1 CONFIGURATION
+=head1 SEE ALSO
 
-    store: library
-    bag: books
-    fix: signs.fix
-    math_paths:
-      - "publication/(\w+?)/?"
-      - "record/(\w+?)/?"
-
-
-=head1 OPTIONS
+L<Plack::Middleware>, L<Catmandu>
 
 =cut

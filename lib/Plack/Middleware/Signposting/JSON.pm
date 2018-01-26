@@ -59,7 +59,7 @@ __END__
 
 =head1 NAME
 
-Plack::Middleware::Signposting::JSON - A Signposting implementation from JSON content
+Plack::Middleware::Signposting::JSON - A Signposting implementation for JSON content
 
 =head1 SYNOPSIS
 
@@ -69,5 +69,9 @@ Plack::Middleware::Signposting::JSON - A Signposting implementation from JSON co
 
        sub { 200, [ 'Content-Type' => 'text/plain' ], [ $json_string ] };
     };
+
+=head1 SEE ALSO
+
+L<Plack::Middleware>
 
 =cut

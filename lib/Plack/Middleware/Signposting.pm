@@ -26,7 +26,7 @@ __END__
 
 =head1 NAME
 
-Plack::Middleware::Signposting - a base class for Signposting implementations
+Plack::Middleware::Signposting - a base class for Plack implementations of the L<<Signposting>>( https://signposting.org) protocol
 
 =begin markdown
 
@@ -35,17 +35,23 @@ Plack::Middleware::Signposting - a base class for Signposting implementations
 
 =end markdown
 
-=head1 DESCRIPTION
-
-Plack::Middleware::Signposting is a base class for L<<Signposting>>( https://signposting.org) protocol.
-
-=head2 METHODS
+=head1 METHODS
 
 =over
 
-=item to_link_format(ARRAYREF)
+=item * to_link_format(ARRAYREF)
 
 This method produces the format for the link header. It expects an arrayref as input.
+
+=back
+
+=head1 MODULES
+
+=over
+
+=item * L<Plack::Middleware::Signposting::JSON>
+
+=item * L<Plack::Middleware::Signposting::Catmandu>
 
 =back
 
@@ -64,6 +70,9 @@ Copyright 2017 - Vitali Peil
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
 
+
 =head1 SEE ALSO
+
+L<Plack::Middleware>
 
 =cut
