@@ -26,7 +26,7 @@ __END__
 
 =head1 NAME
 
-Plack::Middleware::Signposting - a base class for Plack implementations of the L<<Signposting>>( https://signposting.org) protocol
+Plack::Middleware::Signposting - a base class for Plack implementations of the L<Signposting|https://signposting.org> protocol
 
 =begin markdown
 
