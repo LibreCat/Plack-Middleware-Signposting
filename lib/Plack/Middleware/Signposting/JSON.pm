@@ -9,7 +9,6 @@ use JSON qw(decode_json);
 use Plack::Request;
 use Plack::Util::Accessor qw(fix);
 use Moo;
-use parent 'Plack::Middleware';
 
 extends 'Plack::Middleware::Signposting';
 

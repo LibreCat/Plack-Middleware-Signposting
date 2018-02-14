@@ -8,7 +8,6 @@ use Catmandu::Fix;
 use Plack::Request;
 use Plack::Util::Accessor;
 use Moo;
-use parent 'Plack::Middleware';
 
 extends 'Plack::Middleware::Signposting';
 
