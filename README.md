@@ -1,15 +1,31 @@
 # NAME
 
-Plack::Middleware::Signposting - a base class for Plack implementations of the [<Signposting](https://metacpan.org/pod/<Signposting)>( https://signposting.org) protocol
+Plack::Middleware::Signposting - a base class for Plack implementations of the [Signposting](https://signposting.org) protocol
 
 [![Build Status](https://travis-ci.org/LibreCat/Plack-Middleware-Signposting.svg?branch=master)](https://travis-ci.org/LibreCat/Plack-Middleware-Signposting)
 [![Coverage Status](https://coveralls.io/repos/github/LibreCat/Plack-Middleware-Signposting/badge.svg?branch=master)](https://coveralls.io/github/LibreCat/Plack-Middleware-Signposting?branch=master)
 
+# SYNOPSIS
+
+    package Plack::Middleware::Signposting::Foo;
+
+    use Moo;
+
+    extends 'Plack::Middleware::Signposting';
+
+    sub call {
+        my ($self, $env) = @_;
+
+        ...
+        my @data = ("0001", $relation, $type);
+        $self->to_link_format(\@data);
+    }
+
 # METHODS
 
-- to\_link\_format(ARRAYREF)
+- to\_link\_format(\\@ARRAY)
 
-    This method produces the format for the link header. It expects an arrayref as input.
+    This method produces the format for the link header.
 
 # MODULES
 
