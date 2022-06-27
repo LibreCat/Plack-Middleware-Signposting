@@ -1,4 +1,5 @@
 /Plack-Middleware-Signposting-*
+/plack-middleware-signposting-*
 /.build
 /_build*
 /Build
