@@ -30,8 +30,9 @@ Plack::Middleware::Signposting - a base class for Plack implementations of the L
 
 =begin markdown
 
-[![Build Status](https://travis-ci.org/LibreCat/Plack-Middleware-Signposting.svg?branch=master)](https://travis-ci.org/LibreCat/Plack-Middleware-Signposting)
+![Test status](https://github.com/LibreCat/Plack-Middleware-Signposting/actions/workflows/linux.yml/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/LibreCat/Plack-Middleware-Signposting/badge.svg?branch=master)](https://coveralls.io/github/LibreCat/Plack-Middleware-Signposting?branch=master)
+[![CPANTS kwalitee](http://cpants.cpanauthors.org/dist/Plack-Middleware-Signposting.png)](http://cpants.cpanauthors.org/dist/Plack-Middleware-Signposting)
 
 =end markdown
 
@@ -76,6 +77,10 @@ This method produces the format for the link header.
 Vitali Peil, C<< <vitali.peil at uni-bielefeld.de> >>
 
 Nicolas Steenlant, C<< <nicolas.steenlant at ugent.be> >>
+
+=head1 CONTRIBUTORS
+
+Mohammad S Anwar (@manwar)
 
 =head1 LICENSE
 
