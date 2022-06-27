@@ -2,8 +2,9 @@
 
 Plack::Middleware::Signposting - a base class for Plack implementations of the [Signposting](https://signposting.org) protocol
 
-[![Build Status](https://travis-ci.org/LibreCat/Plack-Middleware-Signposting.svg?branch=master)](https://travis-ci.org/LibreCat/Plack-Middleware-Signposting)
+![Test status](https://github.com/LibreCat/Plack-Middleware-Signposting/actions/workflows/linux.yml/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/LibreCat/Plack-Middleware-Signposting/badge.svg?branch=master)](https://coveralls.io/github/LibreCat/Plack-Middleware-Signposting?branch=master)
+[![CPANTS kwalitee](http://cpants.cpanauthors.org/dist/Plack-Middleware-Signposting.png)](http://cpants.cpanauthors.org/dist/Plack-Middleware-Signposting)
 
 # SYNOPSIS
 
@@ -29,14 +30,18 @@ Plack::Middleware::Signposting - a base class for Plack implementations of the [
 
 # MODULES
 
-- [Plack::Middleware::Signposting::JSON](https://metacpan.org/pod/Plack::Middleware::Signposting::JSON)
-- [Plack::Middleware::Signposting::Catmandu](https://metacpan.org/pod/Plack::Middleware::Signposting::Catmandu)
+- [Plack::Middleware::Signposting::JSON](https://metacpan.org/pod/Plack%3A%3AMiddleware%3A%3ASignposting%3A%3AJSON)
+- [Plack::Middleware::Signposting::Catmandu](https://metacpan.org/pod/Plack%3A%3AMiddleware%3A%3ASignposting%3A%3ACatmandu)
 
 # AUTHOR
 
 Vitali Peil, `<vitali.peil at uni-bielefeld.de>`
 
 Nicolas Steenlant, `<nicolas.steenlant at ugent.be>`
+
+# CONTRIBUTORS
+
+Mohammad S Anwar (@manwar)
 
 # LICENSE
 
@@ -45,4 +50,4 @@ it under the same terms as Perl itself.
 
 # SEE ALSO
 
-[Plack::Middleware](https://metacpan.org/pod/Plack::Middleware)
+[Plack::Middleware](https://metacpan.org/pod/Plack%3A%3AMiddleware)

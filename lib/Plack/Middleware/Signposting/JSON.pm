@@ -1,6 +1,6 @@
 package Plack::Middleware::Signposting::JSON;
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 use Catmandu::Sane;
 use Catmandu;
